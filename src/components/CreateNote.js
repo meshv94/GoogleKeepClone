@@ -7,11 +7,25 @@ export default function CreateNote(props) {
 
     const [expand, setExpand] = useState(false)
 
+
     // create state
     const [note, setNote] = useState({
         title:"",
         content:""
     });
+
+    // setlocal storage function
+    function setLocalStorageItem(note){
+        if(localStorage.getItem("userDataArr")){
+            let userDataArr = JSON.parse( localStorage.getItem("userDataArr") )
+            userDataArr.push(note);
+            localStorage.setItem("userDataArr" , JSON.stringify(userDataArr));
+        }else{
+            let userDataArr = [];
+            userDataArr.push(note);
+            localStorage.setItem("userDataArr" , JSON.stringify(userDataArr));
+        }
+    }
 
 
     //onchange function
@@ -30,10 +44,13 @@ export default function CreateNote(props) {
     const addEvent= (event) => {
         event.preventDefault();
         props.addNote(note);
+        setLocalStorageItem(note);
+
         setNote({
             title:"",
             content:""
         })
+        
     };
 
     // expand function
