@@ -7,7 +7,7 @@ import Note from "./components/Note";
 function App() {
   // state
   const [addIteam, setAddIteam] = useState([]);
-  
+
   const addNote = (note) => {
     setAddIteam(
       (previousData) => {
@@ -32,15 +32,14 @@ function App() {
     if(localStorage.getItem("userDataArr")){
       setAddIteam(JSON.parse(localStorage.getItem("userDataArr")))
     }
-  } , [addIteam])
+  } , [])
 
   return (
     <>
       <Header />
       <CreateNote addNote={addNote} />
-
-        
-        {addIteam && addIteam.map((element, index) => {
+      <div className="notelist">
+      {addIteam && addIteam.map((element, index) => {
           return <Note
             key={index}
             id={index}
@@ -52,6 +51,7 @@ function App() {
         }
   
 
+      </div>
       <Footer />
     </>
   );

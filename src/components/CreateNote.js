@@ -72,7 +72,7 @@ export default function CreateNote(props) {
             <form>
             {expand? <input type="text" name="title" value={note.title} onChange={InputEvent} placeholder="Title" autoComplete='off' /> : null}
                     <textarea rows="" name="content" column="" value={note.content} onChange={InputEvent} onClick={expandIt} placeholder="Enter a note"/>
-            {expand? <Button onClick={addEvent}> <AddIcon className='plus_sign'/> </Button> : null }
+            {expand? <Button onClick={addEvent} data-cy="cypress-add"> <AddIcon className='plus_sign'/> </Button> : null }
             </form>
         </div>
 

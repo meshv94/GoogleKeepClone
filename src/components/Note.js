@@ -14,7 +14,7 @@ export default function Note(props) {
                 <h1> {props.title} </h1>
                 <br/>
                 <p> {props.content} </p>
-                <button className='btn' onClick={deleteNote}>
+                <button className='btn' onClick={deleteNote} data-cy="cypress-delete">
                 <DeleteOutlineIcon className='deleteIcon'/>
                 </button>
             </div>
