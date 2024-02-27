@@ -7,11 +7,7 @@ import Note from "./components/Note";
 function App() {
   // state
   const [addIteam, setAddIteam] = useState([]);
-
-  useEffect(()=>{
-    setAddIteam(JSON.parse(localStorage.getItem("userDataArr")))
-  } , [addIteam])
-
+  
   const addNote = (note) => {
     setAddIteam(
       (previousData) => {
@@ -26,10 +22,17 @@ function App() {
         return addIteam.filter((currdata, indx) => { return indx !== id })
       }
     )
+    // delets data from localstorage
     let userDataArr = JSON.parse(localStorage.getItem("userDataArr"))
     userDataArr.splice(id ,1)
     localStorage.setItem("userDataArr" , JSON.stringify(userDataArr));
   }
+
+  useEffect(()=>{
+    if(localStorage.getItem("userDataArr")){
+      setAddIteam(JSON.parse(localStorage.getItem("userDataArr")))
+    }
+  } , [addIteam])
 
   return (
     <>
